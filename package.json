@@ -12,10 +12,10 @@
   ],
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "check": "tsc --noEmit -p tsconfig.json"
+    "check": "tsc --noEmit -p tsconfig.json",
+    "boundary": "powershell -ExecutionPolicy Bypass -File ./scripts/check-public-boundary.ps1"
   },
   "devDependencies": {
     "typescript": "^5.6.3"
   }
 }
-

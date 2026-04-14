@@ -15,11 +15,11 @@ It must not contain escrow business rules, dispute handling logic, trust scoring
 ## TypeScript Quick Start
 
 ```ts
-import { PeeplxClient } from "peeplx-sdk";
+import { LocalStorageTokenStore, PeeplxClient } from "peeplx-sdk";
 
 const client = new PeeplxClient({
   baseUrl: "https://api.peeplx.com/api/v1",
-  getAccessToken: () => localStorage.getItem("accessToken"),
+  tokenStore: new LocalStorageTokenStore(),
 });
 
 const profile = await client.profile.getPublicProfile("jane");
@@ -34,3 +34,11 @@ client = PeeplxClient(base_url="https://api.peeplx.com/api/v1")
 profile = client.profile.get_public_profile("jane")
 ```
 
+## Included APIs
+
+- `auth`
+- `escrow`
+- `payments`
+- `profile`
+
+These clients wrap public endpoints only. They do not include business-rule evaluation or private workflow logic.

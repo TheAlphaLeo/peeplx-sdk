@@ -1,13 +1,15 @@
-import type { ApiErrorPayload, PeeplxClientOptions, RequestConfig } from "./types";
+import type { ApiErrorPayload, PeeplxClientOptions, RequestConfig, TokenStore } from "./types";
 
 export class ApiClient {
   private readonly baseUrl: string;
   private readonly getAccessToken?: () => string | null;
   private readonly fetchFn: typeof fetch;
+  readonly tokenStore?: TokenStore;
 
   constructor(options: PeeplxClientOptions) {
     this.baseUrl = options.baseUrl.replace(/\/$/, "");
-    this.getAccessToken = options.getAccessToken;
+    this.tokenStore = options.tokenStore;
+    this.getAccessToken = options.getAccessToken ?? options.tokenStore?.getAccessToken.bind(options.tokenStore);
     this.fetchFn = options.fetchFn ?? fetch;
   }
 
@@ -77,4 +79,3 @@ export class ApiClient {
     return (await response.json()) as T;
   }
 }
-

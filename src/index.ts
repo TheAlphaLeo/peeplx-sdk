@@ -22,9 +22,9 @@ export class PeeplxClient {
 }
 
 export * from "./auth";
+export * from "./browser";
 export * from "./client";
 export * from "./escrow";
 export * from "./payments";
 export * from "./profile";
 export * from "./types";
-

@@ -2,6 +2,13 @@ export interface RequestConfig extends RequestInit {
   params?: Record<string, string | number | boolean | undefined>;
 }
 
+export interface TokenStore {
+  getAccessToken(): string | null;
+  getRefreshToken?(): string | null;
+  setTokens?(tokens: AuthTokens): void;
+  clearTokens?(): void;
+}
+
 export interface ApiErrorPayload {
   message?: string;
   statusCode?: number;
@@ -215,6 +222,6 @@ export interface ProfilePaymentResponse {
 export interface PeeplxClientOptions {
   baseUrl: string;
   getAccessToken?: () => string | null;
+  tokenStore?: TokenStore;
   fetchFn?: typeof fetch;
 }
-
